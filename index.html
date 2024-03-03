@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="container__slider">
+        <button class="next">Следующее</button>
+        <img class="image" src="images/black-cat.jpg" />
+        <button class="previous">Предыдущее</button>
+      </div>
+      <div class="bottom"></div>
+    </div>
+    <script>
+      const imagesUrls = [
+        'images/black-cat.jpg',
+        'images/butterfly.jpg',
+        'images/giraffe.jpg',
+        'images/husky.jpg',
+        'images/leopard.jpg',
+        'images/white-tiger-cub.jpg',
+      ];
+
+      const imageElement = document.querySelector('.image');
+      const nextButton = document.querySelector('.next');
+      const previousButton = document.querySelector('.previous');
+
+      let currentIndex = 0;
+      imageElement.src = imagesUrls[currentIndex];
+
+      function nextImage() {
+        currentIndex++;
+        if (currentIndex >= imagesUrls.length) {
+          currentIndex = 0;
+        }
+        imageElement.src = imagesUrls[currentIndex];
+      }
+
+      function previousImage() {
+        currentIndex--;
+        if (currentIndex < 0) {
+          currentIndex = imagesUrls.length - 1;
+        }
+        imageElement.src = imagesUrls[currentIndex];
+      }
+
+      nextButton.addEventListener('click', nextImage);
+      previousButton.addEventListener('click', previousImage);
+
+      const paginationCircles = [];
+      const bottom = document.querySelector('.bottom');
+
+      function createPaginationCircle() {
+        const div = document.createElement('div');
+        div.className = 'pagination-circle';
+        bottom.appendChild(div);
+        paginationCircles.push(div);
+      }
+
+      function addPagination() {
+        imagesUrls.forEach(createPaginationCircle);
+        paginationCircles[0].classList.add('active');
+        paginationCircles.forEach((circle, index) => {
+          circle.addEventListener('click', () => {
+            imageElement.src = imagesUrls[index];
+            currentIndex = index;
+          });
+        });
+      }
+
+      addPagination();
+    </script>
+  </body>
+</html>
