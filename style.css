@@ -47,12 +47,12 @@
   box-shadow: 4px 4px 6px -1px azure, 4px -4px 6px -1px azure;
   cursor: pointer;
 }
-.container .bottom {
+.container__bottom {
   display: flex;
   -moz-column-gap: 25px;
        column-gap: 25px;
 }
-.container .bottom .pagination-circle {
+.container__bottom .pagination-circle {
   height: 25px;
   width: 25px;
   box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.15);
@@ -60,7 +60,7 @@
   background-color: rgb(29, 138, 138);
   transition: background-color 0.6s ease;
 }
-.container .bottom .pagination-circle:hover {
+.container__bottom .pagination-circle:hover {
   background-color: black;
   transition: background-color 0.6s ease;
   cursor: pointer;
